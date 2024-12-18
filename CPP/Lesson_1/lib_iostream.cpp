@@ -23,9 +23,10 @@ int main() {
     return 0;
 }
 
-s = "sadasdsadbbrtbvfreferf"
-print(s)
+// s = "sadasdsadbbrtbvfreferf"
+// print(s)
 
+/* Функиция №1
 #include <iostream>
 
 using namespace std;
@@ -37,3 +38,19 @@ int main() {
     std::cout << "Ваше число: " << s << std::endl;
     return 0;
 }
+*/
+
+/* Функиция №2
+    #include <iostream>
+
+    using namespace std;
+
+    int main() {
+        int number = 8;
+        std::cout << "Число по умолчанию: " << number << std::endl;
+        std::cout << "Введите число: ";
+        std::cin >> number;
+        std::cout << "Число, которое ввёл пользователь: " << number << std::endl;
+        return 0;
+    }
+*/

@@ -8,6 +8,7 @@
 
     read - чтение ("r")
     write - запись ("w")
+    x - изменение, удаление (rwx)
 */
 
 #include <fstream>

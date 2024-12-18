@@ -10,7 +10,7 @@
 #include <fstream>  // <= подключение библиотеки для работы с файлами
 #include <ostream>  // <= подключение библиотеки для работы с выводом
 
-using namespace std; /* 10 MB */
+using namespace std; /* 10 MB - 8 KБ*/
 
 int main() {
     std::cout << "Hello, World" << std::endl;
