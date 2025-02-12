@@ -1,51 +1,3 @@
-
-
-'''import tkinter as tk
-from PIL import Image, ImageTk
-
-def show_image(file_path):
-    # Создание основного окна
-    root = tk.Tk()
-    root.title("Изображение на весь экран")
-
-    # Установка на весь экран
-    root.attributes("-fullscreen", True)
-
-    # Загрузка изображения
-    image = Image.open(file_path)
-    photo = ImageTk.PhotoImage(image)
-
-    # Отображение изображения
-    label = tk.Label(root, image=photo)
-    label.pack()1
-    Bentley 
-    1
-
-    # Закрытие окна по клику
-    root.bind("<Button-1>", lambda e: root.destroy())
-
-    root.mainloop()
-
-if __name__ == "__main__":
-    file_path = input("Введите путь к изображению: ")
-    show_image(file_path)
-poor_n = random.randint(50000, 500000)
-rich_n=random.randint(10000,200000)
-year=random.randint(50000,100000)
-type=random.randint(1000,10000)
-c=strБ(input())
-m=str(input())
-y=int(input())
-t=str(input())
-s=0
-
-if m=="Mercedes-Benz" or m=="BMW" or m=="Audi" or m=="Lexus" or m=="Porsche" or m=="Jaguar" or m=="Land Rover" or m=="Maserati" or m=="Bentley":
-    s=s+rich_n
-else:
-    s=s+poor_n
-s+=year
-s+=type
-print("Цвет авто:", c, "Марка авто:", m, "Год выпуска:", y, "Тип двигателя авто:", t ,"Общая цена:", s)'''
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
@@ -53,15 +5,6 @@ from PIL import Image
 import random
 import pickle
 import os
-
-class AutoCloseMessageBox(tk.Toplevel):
-    def __init__(self, parent, title, message, delay=3000):
-        super().__init__(parent)
-        self.title(title)
-        self.geometry("300x100")
-        self.label = tk.Label(self, text=message)
-        self.label.pack(pady=20)
-        self.after(delay, self.destroy)
 
 class Student:
     def __init__(self):
@@ -138,22 +81,22 @@ def random_event(player):
     event = random.randint(0, 5)
     if event == 0:
         player.health -= 20
-        AutoCloseMessageBox(root, "Событие", "Вы заболели [Потеряли 20% здоровья]")
+        messagebox.showinfo("Событие", "Вы заболели [Потеряли 20% здоровья]")
     elif event == 1:
         player.money += 300
-        AutoCloseMessageBox(root, "Событие", "Вы получили стипендию [+300 руб]")
+        messagebox.showinfo("Событие", "Вы получили стипендию [+300 руб]")
     elif event == 2:
         player.money -= 200
-        AutoCloseMessageBox(root, "Событие", "Вы потеряли кошелек [-200 руб]")
+        messagebox.showinfo("Событие", "Вы потеряли кошелек [-200 руб]")
     elif event == 3:
         player.money += 100
-        AutoCloseMessageBox(root, "Событие", "Вы нашли деньги на улице [+100 руб]")
+        messagebox.showinfo("Событие", "Вы нашли деньги на улице [+100 руб]")
     elif event == 4:
         player.mood -= 10
-        AutoCloseMessageBox(root, "Событие", "Вы простудились [Потеряли 10% настроения]")
+        messagebox.showinfo("Событие", "Вы простудились [Потеряли 10% настроения]")
     elif event == 5:
         player.health -= 10
-        AutoCloseMessageBox(root, "Событие", "Вы попали под дождь и промокли [Потеряли 10% здоровья]")
+        messagebox.showinfo("Событие", "Вы попали под дождь и промокли [Потеряли 10% здоровья]")
 
 def set_difficulty(player, difficulty):
     if difficulty == 1:
@@ -175,7 +118,7 @@ def set_difficulty(player, difficulty):
         player.mood = 80
         player.health = 80
     else:
-        AutoCloseMessageBox(root, "Ошибка", "Неверный выбор уровня сложности. Установлен средний уровень.")
+        messagebox.showinfo("Ошибка", "Неверный выбор уровня сложности. Установлен средний уровень.")
         player.money = 3000
         player.satiety = 100
         player.sleep = 100
@@ -186,28 +129,35 @@ def save_game(player, filename):
     if not filename:
         filename = os.path.join(os.path.dirname(__file__), "savegame.pkl")  # Default filename in the project directory
 
+    # Debug: Print the directory and full path to the file
+    print(f"Debug: Directory - {os.path.dirname(__file__)}")
+    print(f"Debug: Saving file to - {filename}")
+
     with open(filename, 'wb') as file:
         pickle.dump(player, file)
-    AutoCloseMessageBox(root, "Сохранение", "Игра сохранена успешно!")
+    messagebox.showinfo("Сохранение", "Игра сохранена успешно!")
 
 def load_game(filename):
     if not filename:
         filename = os.path.join(os.path.dirname(__file__), "savegame.pkl")  # Default filename in the project directory
 
+    # Debug: Print the directory and full path to the file
+    print(f"Debug: Directory - {os.path.dirname(__file__)}")
+    print(f"Debug: Loading file from - {filename}")
+
     try:
         with open(filename, 'rb') as file:
             player = pickle.load(file)
-        AutoCloseMessageBox(root, "Загрузка", "Игра загружена успешно!")
+        messagebox.showinfo("Загрузка", "Игра загружена успешно!")
         return player
     except FileNotFoundError:
-        AutoCloseMessageBox(root, "Ошибка", "Файл сохранения не найден. Пожалуйста, убедитесь, что файл находится в правильной директории.")
+        messagebox.showerror("Ошибка", "Файл сохранения не найден. Пожалуйста, убедитесь, что файл находится в правильной директории.")
         return None
 
 def play_game():
     ctk.set_appearance_mode("Dark")  # Modes: "System" (default), "Dark", "Light"
     ctk.set_default_color_theme("dark-blue")  # Themes: "blue" (default), "green", "dark-blue"
 
-    global root
     root = ctk.CTk()
     root.title("Симулятор Студента")
     root.geometry("600x700")
@@ -244,13 +194,13 @@ def play_game():
         show_status()
 
         if not player.is_alive():
-            AutoCloseMessageBox(root, "Игра окончена", "Вы не смогли продолжить обучение. Игра окончена.")
+            messagebox.showinfo("Игра окончена", "Вы не смогли продолжить обучение. Игра окончена.")
             root.quit()
         elif player.days_left <= 0:
             if player.study_progress >= 100:
-                AutoCloseMessageBox(root, "Победа", "Поздравляем. Вы успешно завершили обучение!")
+                messagebox.showinfo("Победа", "Поздравляем. Вы успешно завершили обучение!")
             else:
-                AutoCloseMessageBox(root, "Проигрыш", "К сожалению, вы не смогли завершить учебу. Попробуйте еще раз!")
+                messagebox.showinfo("Проигрыш", "К сожалению, вы не смогли завершить учебу. Попробуйте еще раз!")
             root.quit()
         else:
             player.days_left -= 1
@@ -275,11 +225,12 @@ def play_game():
         game_frame.pack(pady=20)
 
     # Load and display the student image
-    image_path = os.path.join(os.path.dirname(__file__), "cat_of_student.gif")
+    image_path = os.path.join(os.path.dirname(__file__), "images", "student.png")
+    print(f"Debug: Loading image from - {image_path}")
     try:
         img = ctk.CTkImage(Image.open(image_path), size=(200, 200))  # Use CTkImage to load the image
     except FileNotFoundError:
-        AutoCloseMessageBox(root, "Ошибка", "Изображение 'student.png' не найдено. Пожалуйста, убедитесь, что файл находится в правильной директории.")
+        messagebox.showerror("Ошибка", "Изображение 'student.png' не найдено. Пожалуйста, убедитесь, что файл находится в правильной директории.")
         img = None
 
     if img:
