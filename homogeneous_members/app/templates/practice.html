@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+
+{% block title %}Практика{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12" data-aos="fade-up">
+        <h2>Практика</h2>
+        <p>На этой странице вы можете проверить свои знания об однородных членах предложения. Выберите тест и начните!</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 1: Определение однородных членов</h5>
+                <p class="card-text">Проверьте, сможете ли вы определить однородные члены в предложениях.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test1">Начать тест</button>
+                <div class="collapse" id="test1">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Я люблю читать книги и смотреть фильмы."</p>
+                        <input type="text" class="form-control" id="question1" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('читать, смотреть', 'question1', 'result1')">Проверить</button>
+                        <p id="result1" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Она купила яблоки, груши и виноград."</p>
+                        <input type="text" class="form-control" id="question2" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('яблоки, груши, виноград', 'question2', 'result2')">Проверить</button>
+                        <p id="result2" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 2: Виды однородных членов</h5>
+                <p class="card-text">Проверьте, умеете ли вы определять виды однородных членов.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test2">Начать тест</button>
+                <div class="collapse" id="test2">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Какие члены предложения являются однородными в предложении: "Кошка сидела на диване и смотрела в окно."</p>
+                        <input type="text" class="form-control" id="question3" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('сидела, смотрела', 'question3', 'result3')">Проверить</button>
+                        <p id="result3" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите вид однородных членов в предложении: "Он быстро и аккуратно выполнил задание."</p>
+                        <input type="text" class="form-control" id="question4" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('обстоятельства', 'question4', 'result4')">Проверить</button>
+                        <p id="result4" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 3: Сложные предложения</h5>
+                <p class="card-text">Определите однородные члены в сложных предложениях.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test3">Начать тест</button>
+                <div class="collapse" id="test3">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Он решил пойти в магазин и купить хлеб, молоко и сыр."</p>
+                        <input type="text" class="form-control" id="question5" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('купить хлеб, молоко, сыр', 'question5', 'result5')">Проверить</button>
+                        <p id="result5" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Она любит гулять по парку и набережной."</p>
+                        <input type="text" class="form-control" id="question6" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('гулять по парку, набережной', 'question6', 'result6')">Проверить</button>
+                        <p id="result6" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 4: Определения и дополнения</h5>
+                <p class="card-text">Определите однородные определения и дополнения.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test4">Начать тест</button>
+                <div class="collapse" id="test4">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные определения в предложении: "Красивый и яркий закат осветил небо."</p>
+                        <input type="text" class="form-control" id="question7" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('красивый, яркий', 'question7', 'result7')">Проверить</button>
+                        <p id="result7" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные дополнения в предложении: "Он взял книгу и тетрадь."</p>
+                        <input type="text" class="form-control" id="question8" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('книгу, тетрадь', 'question8', 'result8')">Проверить</button>
+                        <p id="result8" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 5: Подлежащие и сказуемые</h5>
+                <p class="card-text">Определите однородные подлежащие и сказуемые.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test5">Начать тест</button>
+                <div class="collapse" id="test5">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные подлежащие в предложении: "Маша и Оля дружат с детства."</p>
+                        <input type="text" class="form-control" id="question9" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('Маша, Оля', 'question9', 'result9')">Проверить</button>
+                        <p id="result9" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные сказуемые в предложении: "Они пели песни и танцевали."</p>
+                        <input type="text" class="form-control" id="question10" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('пели, танцевали', 'question10', 'result10')">Проверить</button>
+                        <p id="result10" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 6: Обстоятельства</h5>
+                <p class="card-text">Определите однородные обстоятельства.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test6">Начать тест</button>
+                <div class="collapse" id="test6">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные обстоятельства в предложении: "Он приехал быстро и вовремя."</p>
+                        <input type="text" class="form-control" id="question11" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('быстро, вовремя', 'question11', 'result11')">Проверить</button>
+                        <p id="result11" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные обстоятельства в предложении: "Она говорила тихо и спокойно."</p>
+                        <input type="text" class="form-control" id="question12" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('тихо, спокойно', 'question12', 'result12')">Проверить</button>
+                        <p id="result12" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 7: Сложные случаи</h5>
+                <p class="card-text">Определите однородные члены в сложных случаях.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test7">Начать тест</button>
+                <div class="collapse" id="test7">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Он любит играть в футбол и баскетбол, а также плавать."</p>
+                        <input type="text" class="form-control" id="question13" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('играть, плавать, футбол, баскетбол', 'question13', 'result13')">Проверить</button>
+                        <p id="result13" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Она мечтает о путешествиях, приключениях и новых знакомствах."</p>
+                        <input type="text" class="form-control" id="question14" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('путешествиях, приключениях, знакомствах', 'question14', 'result14')">Проверить</button>
+                        <p id="result14" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 8: Уточняющие члены</h5>
+                <p class="card-text">Определите уточняющие члены предложения.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test8">Начать тест</button>
+                <div class="collapse" id="test8">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите уточняющие члены в предложении: "Я мечтаю побывать на Эльбрусе, на Кавказе."</p>
+                        <input type="text" class="form-control" id="question15" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('на Кавказе', 'question15', 'result15')">Проверить</button>
+                        <p id="result15" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите уточняющие члены в предложении: "Он живет в городе Москве, на улице Ленина."</p>
+                        <input type="text" class="form-control" id="question16" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('на улице Ленина', 'question16', 'result16')">Проверить</button>
+                        <p id="result16" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 9: Сочетания слов</h5>
+                <p class="card-text">Определите однородные члены в сочетаниях слов.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test9">Начать тест</button>
+                <div class="collapse" id="test9">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Он любит читать и писать стихи."</p>
+                        <input type="text" class="form-control" id="question17" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('читать, писать', 'question17', 'result17')">Проверить</button>
+                        <p id="result17" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Она занимается йогой и медитацией."</p>
+                        <input type="text" class="form-control" id="question18" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('йогой, медитацией', 'question18', 'result18')">Проверить</button>
+                        <p id="result18" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 10: Перечисления</h5>
+                <p class="card-text">Определите однородные члены в перечислениях.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test10">Начать тест</button>
+                <div class="collapse" id="test10">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "В корзине лежали яблоки, бананы, апельсины и груши."</p>
+                        <input type="text" class="form-control" id="question19" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('яблоки, бананы, апельсины, груши', 'question19', 'result19')">Проверить</button>
+                        <p id="result19" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "На полке стояли книги, журналы и альбомы."</p>
+                        <input type="text" class="form-control" id="question20" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('книги, журналы, альбомы', 'question20', 'result20')">Проверить</button>
+                        <p id="result20" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 11: Отрицания</h5>
+                <p class="card-text">Определите однородные члены с отрицанием.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test11">Начать тест</button>
+                <div class="collapse" id="test11">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Он не любит кофе и чай."</p>
+                        <input type="text" class="form-control" id="question21" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('кофе, чай', 'question21', 'result21')">Проверить</button>
+                        <p id="result21" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Она не ест мясо и рыбу."</p>
+                        <input type="text" class="form-control" id="question22" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('мясо, рыбу', 'question22', 'result22')">Проверить</button>
+                        <p id="result22" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Тест 12: Сравнения</h5>
+                <p class="card-text">Определите однородные члены в сравнениях.</p>
+                <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#test12">Начать тест</button>
+                <div class="collapse" id="test12">
+                    <div class="mt-3">
+                        <h6>Вопрос 1:</h6>
+                        <p>Найдите однородные члены в предложении: "Он такой же высокий и сильный, как его брат."</p>
+                        <input type="text" class="form-control" id="question23" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('высокий, сильный', 'question23', 'result23')">Проверить</button>
+                        <p id="result23" class="mt-2 text-danger"></p>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Вопрос 2:</h6>
+                        <p>Определите однородные члены в предложении: "Эта книга интереснее и полезнее, чем та."</p>
+                        <input type="text" class="form-control" id="question24" placeholder="Введите ваш ответ">
+                        <button class="btn btn-success mt-2" onclick="checkAnswer('интереснее, полезнее', 'question24', 'result24')">Проверить</button>
+                        <p id="result24" class="mt-2 text-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkAnswer(correctAnswer, inputId, resultId) {
+        const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+        const correct = correctAnswer.toLowerCase();
+        const resultElement = document.getElementById(resultId);
+
+        if (userAnswer === correct) {
+            resultElement.textContent = "Правильно!";
+            resultElement.className = "text-success";
+        } else {
+            resultElement.textContent = "Неправильно. Попробуйте еще раз.";
+            resultElement.className = "text-danger";
+        }
+    }
+</script>
+{% endblock %}
