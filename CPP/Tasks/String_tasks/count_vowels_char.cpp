@@ -1,71 +1,129 @@
 #include <iostream>
 #include <string>
 #include <clocale>   // Для работы с setlocale
-#include <windows.h> // Для SetConsoleOutputCP (только Windows)
 #include <limits>    // Для numeric_limits
+#include <algorithm> // Для std::transform
+#include <cwctype>   // Для iswalpha
+
+#ifdef _WIN32
+#include <windows.h> // Для SetConsoleOutputCP (только Windows)
+#endif
 
 using namespace std;
 
-// Константа с гласными для русского и английского языков
-const string VOWELS = "aeiouAEIOUаеёиоуыэюяАЕЁИОУЫЭЮЯ";
+/**
+ * Константа с гласными для русского и английского языков.
+ */
+const wstring VOWELS = L"aeiouAEIOUаеёиоуыэюяАЕЁИОУЫЭЮЯ";
 
-void countLetters(const string &str, int &vowels, int &consonants)
+/**
+ * Функция для подсчета количества гласных и согласных букв в строке.
+ *
+ * @param str Входная строка для анализа.
+ * @param vowels Счетчик для гласных букв.
+ * @param consonants Счетчик для согласных букв.
+ */
+void countLetters(const wstring &str, int &vowels, int &consonants)
 {
     vowels = 0;
     consonants = 0;
 
-    for (char ch : str)
+    for (wchar_t ch : str)
     {
-        if (VOWELS.find(ch) != string::npos)
+        if (VOWELS.find(ch) != wstring::npos)
         {
             vowels++;
         }
-        else if (isalpha(ch))
+        else if (iswalpha(ch))
         {
             consonants++;
         }
     }
 }
 
+/**
+ * Функция для очистки буфера ввода.
+ */
 void clearInputBuffer()
 {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    wcin.clear();
+    wcin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+/**
+ * Функция для вывода приглашения пользователю.
+ */
+void displayPrompt()
+{
+    wcout << L"╔══════════════════════════════╗\n"
+          << L"║   Введите текст для анализа: ║\n"
+          << L"╚══════════════════════════════╝\n> ";
+}
+
+/**
+ * Функция для вывода результатов анализа.
+ *
+ * @param vowels Количество гласных.
+ * @param consonants Количество согласных.
+ */
+void displayResults(int vowels, int consonants)
+{
+    wcout << L"\n════════ Результаты ═════════\n"
+          << L"• Гласные: " << vowels << L"\n"
+          << L"• Согласные: " << consonants << L"\n"
+          << L"═════════════════════════════\n\n";
+}
+
+/**
+ * Основная функция программы.
+ */
 int main()
 {
+    // Настройка локали для UTF-8
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+
+#ifdef _WIN32
     // Настройка консоли Windows для UTF-8
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    setlocale(LC_ALL, "ru_RU.UTF-8");
+#endif
 
-    char choice = 'y';
+    wstring choice = L"y";
 
-    while (tolower(choice) == 'y')
+    while (towlower(choice[0]) == L'y')
     {
-        string input;
-        cout << "╔══════════════════════════════╗\n"
-             << "║   Введите текст для анализа: ║\n"
-             << "╚══════════════════════════════╝\n> ";
+        wstring input;
+        displayPrompt();
+        getline(wcin, input);
 
-        getline(cin, input);
-
-        int vowels, consonants;
+        int vowels = 0, consonants = 0;
         countLetters(input, vowels, consonants);
+        displayResults(vowels, consonants);
 
-        cout << "\n════════ Результаты ═════════\n"
-             << "• Гласные: " << vowels << "\n"
-             << "• Согласные: " << consonants << "\n"
-             << "═════════════════════════════\n\n"
-             << "Продолжить? (y/n): ";
-
-        cin >> choice;
+        wcout << L"Продолжить? (y/n): ";
+        getline(wcin, choice);
         clearInputBuffer(); // Очистка буфера ввода
-        cout << endl;
+        wcout << endl;
     }
 
-    cout << "Программа завершена. Нажмите Enter...";
+    wcout << L"Программа завершена. Нажмите Enter...";
     clearInputBuffer();
     return 0;
+}
+
+/**
+ * Функция для тестирования countLetters.
+ */
+void testCountLetters()
+{
+    int vowels, consonants;
+
+    countLetters(L"Hello World!", vowels, consonants);
+    wcout << L"Test 1 - Vowels: " << vowels << L", Consonants: " << consonants << endl;
+
+    countLetters(L"Привет мир!", vowels, consonants);
+    wcout << L"Test 2 - Vowels: " << vowels << L", Consonants: " << consonants << endl;
+
+    countLetters(L"123! @#", vowels, consonants);
+    wcout << L"Test 3 - Vowels: " << vowels << L", Consonants: " << consonants << endl;
 }
